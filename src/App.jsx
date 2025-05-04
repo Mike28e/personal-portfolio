@@ -403,23 +403,12 @@ export default function PortfolioHomepage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
               {[
                 {
-                  title: "E-Commerce Platform",
-                  description: "A full-stack e-commerce solution with cart, payments, and admin dashboard.",
-                  tags: ["React", "Node.js", "MongoDB"],
-                  image: "/api/placeholder/600/400"
+                  title: "Luxury Car Rental Site",
+                  description: "A luxury car rental platform with booking options, site analytics, and chatbot integration.",
+                  tags: ["Vue.js", "Vuetify", "Google Cloud"],
+                  image: "/assets/images/dycerentals.png",
+                  github: "https://github.com/Mike28e/car-rental-site"
                 },
-                {
-                  title: "Task Management App",
-                  description: "Kanban-style task management with drag-and-drop functionality.",
-                  tags: ["Next.js", "TypeScript", "PostgreSQL"],
-                  image: "/api/placeholder/600/400"
-                },
-                {
-                  title: "Personal Finance Dashboard",
-                  description: "Data visualization dashboard for tracking expenses and investments.",
-                  tags: ["React", "D3.js", "Firebase"],
-                  image: "/api/placeholder/600/400"
-                }
               ].map((project, index) => (
                 <motion.div
                   key={project.title}
@@ -435,6 +424,7 @@ export default function PortfolioHomepage() {
                     description={project.description}
                     tags={project.tags}
                     image={project.image}
+                    github={project.github}
                   />
                 </motion.div>
               ))}
@@ -695,7 +685,7 @@ function SkillCard({ title, skills }) {
 }
 
 // Component for project cards
-function ProjectCard({ title, description, tags, image }) {
+function ProjectCard({ title, description, tags, image, github }) {
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden transition-transform hover:scale-105">
       <div className="h-48 overflow-hidden">
@@ -712,14 +702,14 @@ function ProjectCard({ title, description, tags, image }) {
           ))}
         </div>
         <div className="flex gap-3">
-          <a href="#" className="text-sky-400 hover:text-sky-300 flex items-center text-sm">
+          <a href={github} placeholder="#" target="_blank" className="text-sky-400 hover:text-sky-300 flex items-center text-sm">
             <Github size={16} className="mr-1" />
             Code
           </a>
-          <a href="#" className="text-sky-400 hover:text-sky-300 flex items-center text-sm">
+          {/* <a href="#" className="text-sky-400 hover:text-sky-300 flex items-center text-sm">
             <ExternalLink size={16} className="mr-1" />
             Live Demo
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
