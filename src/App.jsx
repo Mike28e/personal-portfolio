@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import * as motion from "motion/react-client";
 import { Code, Github, Linkedin, Mail, Twitter, ExternalLink, Menu, X } from 'lucide-react';
 import { sendEmail } from './services/email';
+import Experiences from './components/Experiences.jsx';
+import Footer from './components/Footer.jsx';
 
 export default function PortfolioHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -279,7 +281,7 @@ export default function PortfolioHomepage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 1.3 }}
                 >
-                  {[Github, Linkedin, Twitter, Mail].map((Icon, index) => (
+                  {[Github, Linkedin, Mail].map((Icon, index) => (
                     <motion.a 
                       key={index}
                       href="#" 
@@ -386,6 +388,15 @@ export default function PortfolioHomepage() {
             </div>
           </div>
         </section>
+        <motion.div
+          id="experiences-heading"
+          data-animate="true"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isVisible["experiences-heading"] ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          >
+          <Experiences />
+        </motion.div>
 
         {/* Projects Section with scroll animations */}
         <section id="projects" className="py-20">
@@ -462,9 +473,8 @@ export default function PortfolioHomepage() {
                 <div className="space-y-4">
                   {[
                     { icon: <Mail size={20} />, text: "hello@placeholder.com", href: "mailto:hello@placeholder.com" },
-                    { icon: <Github size={20} />, text: "github.com/placeholder", href: "https://github.com/placeholder" },
-                    { icon: <Linkedin size={20} />, text: "linkedin.com/in/placeholder", href: "https://linkedin.com/in/placeholder" },
-                    { icon: <Twitter size={20} />, text: "@placeholder", href: "https://twitter.com/placeholder" }
+                    { icon: <Github size={20} />, text: "Github.com/Mike28e", href: "https://github.com/Mike28e" },
+                    { icon: <Linkedin size={20} />, text: "LinkedIn.com/in/MikeElias1", href: "https://www.linkedin.com/in/MikeElias1" },
                   ].map((contact, index) => (
                     <motion.div
                       key={index}
@@ -497,7 +507,7 @@ export default function PortfolioHomepage() {
                       type: "text", 
                       value: contactName, 
                       onChange: setContactName, 
-                      placeholder: "placeholder" 
+                      placeholder: "Your Name" 
                     },
                     { 
                       id: "email", 
@@ -505,7 +515,7 @@ export default function PortfolioHomepage() {
                       type: "email", 
                       value: contactEmail, 
                       onChange: setContactEmail, 
-                      placeholder: "placeholder@example.com" 
+                      placeholder: "YourEmail@example.com" 
                     }
                   ].map((field, index) => (
                     <motion.div 
@@ -565,34 +575,7 @@ export default function PortfolioHomepage() {
         </section>
       </main>
 
-      {/* Footer with fade-in animation */}
-      <motion.footer 
-        className="bg-gray-950 py-8 border-t border-gray-800"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-center md:text-left mb-4 md:mb-0">
-              <p className="text-gray-400">© {new Date().getFullYear()} Mike Elias. All rights reserved.</p>
-            </div>
-            <div className="flex gap-4">
-              {[Github, Linkedin, Twitter, Mail].map((Icon, index) => (
-                <motion.a 
-                  key={index}
-                  href="#" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Icon size={20} />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.footer>
+      <Footer />
     </div>
   );
 }
