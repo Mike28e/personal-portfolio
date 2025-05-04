@@ -14,7 +14,8 @@ const ExperienceSection = () => {
       location: "Troy, MI - USA",
       website: "ipsos.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Led the modernization initiative to replace legacy systems with a scalable, cloud-based solution that
+improved data processing efficiency by 70%.`,
       skills: ["DevOps", "CI/CD", "Git", "Vue.Js", "C#", "Apache Beam", "Kotlin", "GCP", "SQL Server"],
       logo: "/lifecoach-elevate-logo.png" 
     },
@@ -26,7 +27,8 @@ const ExperienceSection = () => {
       location: "Bloomfield Hills, MI - USA",
       website: "rdagroup.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Successfully managed a data processing team serving major automotive clients including Nissan, Ford,
+GM, and FCA.`,
       skills: ["SQL Server", "Javascript", "Git", "SAS", "Python", "C#", ".NET Core", "VBA"],
       logo: "/saimon-logo.png" 
     },
@@ -38,7 +40,7 @@ const ExperienceSection = () => {
       location: "Bloomfield Hills, MI - USA",
       website: "rdagroup.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Migrated legacy data processing from SAS to SQL, reducing department hours by 50%.`,
       skills: ["SQL Server", "Javascript", "Git", "SAS", "Python", "C#", ".NET Core", "VBA"],
       logo: "/saimon-logo.png" 
     },
@@ -50,7 +52,7 @@ const ExperienceSection = () => {
       location: "Bloomfield Hills, MI - USA",
       website: "rdagroup.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Optimized database performance for client-facing web applications, reducing query times by 40%.`,
       skills: ["SQL Server", "SAS", "Python", "C#", ".NET Core", "VBA"],
       logo: "/saimon-logo.png" 
     },
@@ -62,7 +64,8 @@ const ExperienceSection = () => {
       location: "Bloomfield Hills, MI - USA",
       website: "rdagroup.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Processed and analyzed large datasets using SAS, VB6, and SQL to support weekly client
+deliverables while collaborating with project teams to implement custom reporting solutions.`,
       skills: ["SQL Server", "SAS", "Python",  "VBA"],
       logo: "/saimon-logo.png" 
     },
@@ -74,7 +77,7 @@ const ExperienceSection = () => {
       location: "Bloomfield Hills, MI - USA",
       website: "rdagroup.com",
       websiteUrl: "https://www.ipsos.com/en-us",
-      description: "",
+      description: `Optimized email campaign performance for automotive customer feedback initiatives.`,
       skills: ["SQL Server", "SAS", "Python", "VBA"],
       logo: "/saimon-logo.png" 
     },
