@@ -305,10 +305,11 @@ export default function PortfolioHomepage() {
                 >
                   <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-sky-600/30 relative overflow-hidden">
                     <img 
-                      src="/api/placeholder/400/400" 
+                      src="/assets/images/mike_hs.jpeg" 
                       alt="Profile"
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover brightness-85"
                     />
+
                   </div>
                 </motion.div>
               </div>
