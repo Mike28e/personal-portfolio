@@ -245,8 +245,8 @@ export default function PortfolioHomepage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.9 }}
                 >
-                  I create beautiful, responsive web applications with modern technologies.
-                  Specialized in React, Node.js, and full-stack development.
+                  I build responsive, scalable web applications with clean code and solid architecture. 
+                  Skilled in full-stack development, and quick to adapt to any tech stack.
                 </motion.p>
                 <motion.div 
                   className="flex flex-wrap gap-4"
@@ -340,15 +340,14 @@ export default function PortfolioHomepage() {
               >
                 <h3 className="text-2xl font-bold mb-4">Who I Am</h3>
                 <p className="text-gray-400 mb-4 leading-relaxed">
-                  I'm a forward-thinking developer with 8+ years of experience designing and implementing scalable solutions 
-                  across full-stack environments. Proven track record of modernizing legacy systems and automating critical 
-                  business processes. Adept at balancing independent work with collaborative team efforts to achieve 
-                  organizational objectives.
-                </p>
+                I'm a full-stack developer who specializes in modernizing legacy systems and engineering scalable 
+                applications. I bring deep experience working with large datasets and complex architectures, particularly 
+                with SQL Server. From data-heavy backends to sleek frontends, I build full applications from the ground up 
+                that are fast, maintainable, and built to last.</p>
                 <p className="text-gray-400 mb-4 leading-relaxed">
-                  My journey in tech started when I built my first website at 16. Since then,
-                  I've powered through various legacy systems in an effort to modernize and explored the various 
-                  methods of doing so. 
+                My passion for tech has always been a driving force in my career. I’m continuously 
+                evolving my skills to solve complex problems, whether it's working with large datasets or creating 
+                user-friendly, scalable applications.
                 </p>
                 <p className="text-gray-400 leading-relaxed">
                   When I'm not coding, you can find me hiking mountains, reading sci-fi novels,
