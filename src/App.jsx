@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as motion from "motion/react-client";
 import { Code, Github, Linkedin, Mail, Twitter, ExternalLink, Menu, X } from 'lucide-react';
+import { sendEmail } from './services/email';
 
 export default function PortfolioHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,6 +10,10 @@ export default function PortfolioHomepage() {
   const [contactEmail, setContactEmail] = useState('');
   const [contactMessage, setContactMessage] = useState('');
   const [isVisible, setIsVisible] = useState({});
+
+  const [isSending, setIsSending] = useState(false);
+  const [lastSentTime, setLastSentTime] = useState(null);
+  const HONEYPOT_FIELD_NAME = "phone";
 
   // Handle scroll to update active section and trigger animations
   useEffect(() => {
@@ -61,14 +66,47 @@ export default function PortfolioHomepage() {
     setIsMenuOpen(false);
   };
 
-  // Handle contact form submission
-  const handleSubmit = () => {
-    console.log('Form submitted:', { contactName, contactEmail, contactMessage });
-    alert('Thanks for your message! This would connect to a backend in a real application.');
-    setContactName('');
-    setContactEmail('');
-    setContactMessage('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    // 🐝 1. Honeypot check — if filled, it's likely a bot
+    const honeypotValue = form[HONEYPOT_FIELD_NAME]?.value;
+    if (honeypotValue) {
+      console.log("Spam bot detected. Submission blocked.");
+      return;
+    }
+
+    // 🚫 2. Rate limit — block if sent within 10 seconds
+    const now = Date.now();
+    if (lastSentTime && now - lastSentTime < 10000) {
+      alert("Please wait a few seconds before trying again.");
+      return;
+    }
+
+    if (isSending) return;
+    setIsSending(true);
+
+    const response = await sendEmail({
+      name: contactName,
+      email: contactEmail,
+      message: contactMessage,
+    });
+
+    if (response.success) {
+      alert('Thanks for your message!');
+      setContactName('');
+      setContactEmail('');
+      setContactMessage('');
+      setLastSentTime(now); // ⏱ Update rate limit timer
+    } else {
+      alert('Failed to send message. Please try again later.');
+    }
+
+    setIsSending(false);
   };
+
 
   return (
     <div className="bg-gray-950 text-gray-100 min-h-screen">
@@ -512,6 +550,13 @@ export default function PortfolioHomepage() {
                       placeholder="Your message here..."
                     ></textarea>
                   </motion.div>
+                  <input 
+                    type="text" 
+                    name={HONEYPOT_FIELD_NAME} 
+                    autoComplete="off"
+                    className="hidden" 
+                    tabIndex="-1"
+                  />
                   <motion.button 
                     onClick={handleSubmit}
                     className="px-6 py-3 bg-sky-600 hover:bg-sky-700 rounded-md transition-colors font-medium"
