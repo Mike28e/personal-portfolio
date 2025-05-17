@@ -1,16 +1,21 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+/* eslint-disable-next-line no-unused-vars */
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   // Create a structured array of social links
   const socialLinks = [
-    { icon: Github, href: "https://github.com/Mike28e", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/MikeElias1/", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:your@email.com", label: "Email" }
+    { icon: Github, href: 'https://github.com/Mike28e', label: 'GitHub' },
+    {
+      icon: Linkedin,
+      href: 'https://www.linkedin.com/in/MikeElias1/',
+      label: 'LinkedIn',
+    },
+    { icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
   ];
 
   return (
-    <motion.footer 
+    <motion.footer
       className="bg-gray-950 py-8 border-t border-gray-800"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -23,9 +28,9 @@ const Footer = () => {
           </div>
           <div className="flex gap-4">
             {socialLinks.map((social, index) => (
-              <motion.a 
+              <motion.a
                 key={index}
-                href={social.href} 
+                href={social.href}
                 aria-label={social.label}
                 className="text-gray-400 hover:text-white transition-colors"
                 whileHover={{ scale: 1.2, y: -5 }}
