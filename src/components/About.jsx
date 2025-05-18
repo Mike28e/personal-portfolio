@@ -39,14 +39,11 @@ export default function About() {
           I'm a full-stack developer who specializes in modernizing legacy
           systems and engineering scalable applications. I bring deep experience
           working with large datasets and complex architectures, particularly
-          with SQL Server. From data-heavy backends to sleek frontends, I build
-          full applications from the ground up that are fast, maintainable, and
-          built to last.
+          with SQL Server.
         </p>
         <p className="text-gray-400 leading-relaxed">
-          My passion for tech has always driven my career. I’m continuously
-          evolving my skills to solve complex problems, whether it's working
-          with large datasets or crafting user-friendly, scalable applications.
+          From data-heavy backends to sleek frontends, I build full applications
+          from the ground up that are fast, maintainable, and built to last.
         </p>
         <p className="text-gray-400 leading-relaxed">
           When I'm not coding, you can find me hiking mountains, reading sci-fi
