@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 /* eslint-disable-next-line no-unused-vars */
 import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
 import { sendEmail } from '../services/email';
+import { socials } from '../data/socials';
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -79,26 +79,10 @@ export default function Contact() {
               reach out via any platform below.
             </p>
             <div className="space-y-4">
-              {[
-                {
-                  icon: <Mail size={20} />,
-                  text: 'hello@placeholder.com',
-                  href: 'mailto:hello@placeholder.com',
-                },
-                {
-                  icon: <Github size={20} />,
-                  text: 'github.com/Mike28e',
-                  href: 'https://github.com/Mike28e',
-                },
-                {
-                  icon: <Linkedin size={20} />,
-                  text: 'linkedin.com/in/MikeElias1',
-                  href: 'https://linkedin.com/in/MikeElias1',
-                },
-              ].map((c, i) => (
+              {socials.map((social, i) => (
                 <motion.a
                   key={i}
-                  href={c.href}
+                  href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center text-gray-300 hover:text-white transition-colors"
@@ -107,8 +91,10 @@ export default function Contact() {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                 >
-                  <span className="mr-3 text-sky-500">{c.icon}</span>
-                  {c.text}
+                  <span className="mr-3 text-sky-500">
+                    <social.Icon size={20} />
+                  </span>
+                  {social.name}
                 </motion.a>
               ))}
             </div>

@@ -1,6 +1,7 @@
 /* eslint-disable-next-line no-unused-vars */
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { socials } from '../data/socials.jsx';
 
 export default function Home({ scrollToSection }) {
   return (
@@ -37,10 +38,20 @@ export default function Home({ scrollToSection }) {
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
             Hi, I'm
             <br />
-            <span className="bg-gradient-to-r from-sky-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">
+            <motion.span
+              initial={{ color: '#ffffff' }}
+              animate={{ color: '#21a7eb' }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+            >
               Mike Elias
-            </span>{' '}
-            👋
+            </motion.span>{' '}
+            <motion.span
+              className="inline-block text-5xl md:text-6xl"
+              animate={{ rotate: [0, 20, 0, -20, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              👋
+            </motion.span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300">
             I build responsive, scalable web applications with clean code and
@@ -57,13 +68,13 @@ export default function Home({ scrollToSection }) {
           >
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-6 py-3 bg-gradient-to-tr from-sky-500 to-purple-500 rounded-full text-white font-semibold shadow-lg transform transition-transform hover:scale-105"
+              className="px-6 py-3 bg-gradient-to-tr from-sky-500 to-purple-500 rounded-full text-white font-semibold shadow-lg hover:scale-105 transform transition"
             >
               Explore Projects
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-6 py-3 border-2 border-sky-400 rounded-full text-sky-400 font-semibold transform transition-transform hover:scale-105"
+              className="px-6 py-3 border-2 border-sky-400 rounded-full text-sky-400 font-semibold hover:scale-105 transform transition"
             >
               Get in Touch
             </button>
@@ -76,14 +87,14 @@ export default function Home({ scrollToSection }) {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 1.0 }}
           >
-            {[Github, Linkedin, Mail].map((Icon, i) => (
+            {socials.map((social, i) => (
               <motion.a
                 key={i}
-                href="#"
-                className="text-gray-400 hover:text-white transform transition-transform hover:scale-125"
+                href={social.url}
+                className="text-gray-400 hover:text-white transform hover:scale-125 transition"
                 transition={{ duration: 0.3 }}
               >
-                <Icon size={28} />
+                <social.Icon size={28} />
               </motion.a>
             ))}
           </motion.div>

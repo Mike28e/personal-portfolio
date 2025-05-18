@@ -1,6 +1,8 @@
 /* eslint-disable-next-line no-unused-vars */
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 import { Code } from 'lucide-react';
+import aboutAnim from '../animations/brain.json';
 
 const skillGroups = [
   {
@@ -29,33 +31,50 @@ export default function About() {
       ></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* About Text */}
-        <motion.div
-          className="mb-12 max-w-2xl"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-white">
-            Who I Am
-          </h3>
-          <p className="text-gray-400 leading-relaxed mb-4">
-            I'm a full-stack developer who specializes in modernizing legacy
-            systems and engineering scalable applications. I bring deep
-            experience working with large datasets and complex architectures,
-            particularly with SQL Server.
-          </p>
-          <p className="text-gray-400 leading-relaxed mb-4">
-            From data-heavy backends to sleek frontends, I build full
-            applications from the ground up that are fast, maintainable, and
-            built to last.
-          </p>
-          <p className="text-gray-400 leading-relaxed">
-            When I'm not coding, you can find me hiking mountains, reading
-            sci-fi novels, or experimenting with new cooking recipes.
-          </p>
-        </motion.div>
+        {/* Text and Animation Row */}
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-12 mb-12">
+          <motion.div
+            className="md:w-2/3"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-white">
+              Who I Am
+            </h3>
+            <p className="text-gray-400 leading-relaxed mb-4">
+              I'm a full-stack developer who specializes in modernizing legacy
+              systems and engineering scalable applications. I bring deep
+              experience working with large datasets and complex architectures,
+              particularly with SQL Server.
+            </p>
+            <p className="text-gray-400 leading-relaxed mb-4">
+              From data-heavy backends to sleek frontends, I build full
+              applications from the ground up that are fast, maintainable, and
+              built to last.
+            </p>
+            <p className="text-gray-400 leading-relaxed">
+              When I'm not coding, you can find me hiking mountains, reading
+              sci-fi novels, or experimenting with new cooking recipes.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="md:w-1/3 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Lottie
+              animationData={aboutAnim}
+              loop
+              autoplay
+              className="w-64 h-64 md:w-80 md:h-80"
+            />
+          </motion.div>
+        </div>
 
         {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,19 +1,8 @@
 /* eslint-disable-next-line no-unused-vars */
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { socials } from '../data/socials';
 
 export default function Footer() {
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/Mike28e', label: 'GitHub' },
-    {
-      icon: Linkedin,
-      href: 'https://www.linkedin.com/in/MikeElias1/',
-      label: 'LinkedIn',
-    },
-    { icon: Mail, href: 'mailto:hello@placeholder.com', label: 'Email' },
-    { icon: Twitter, href: 'https://twitter.com/yourhandle', label: 'Twitter' },
-  ];
-
   return (
     <footer className="relative bg-gradient-to-t from-black via-gray-900 to-black pt-20 pb-8 overflow-hidden">
       {/* SVG Wave Top */}
@@ -49,18 +38,18 @@ export default function Footer() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {socialLinks.map(({ icon: Icon, href, label }, i) => (
+          {socials.map((social, i) => (
             <motion.a
               key={i}
-              href={href}
-              aria-label={label}
+              href={social.url}
+              aria-label={social.name}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
               whileHover={{ scale: 1.2, y: -5 }}
               transition={{ duration: 0.3 }}
             >
-              <Icon size={24} />
+              <social.Icon size={24} />
             </motion.a>
           ))}
         </motion.div>
