@@ -72,12 +72,14 @@ const Contact = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
+    <div className="flex flex-col md:grid md:grid-cols-2 gap-8 mt-12">
       <motion.div
+        className="w-full"
         id="contact-info"
         data-animate="true"
         initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <h3 className="text-2xl font-bold mb-4">Contact Information</h3>
@@ -107,7 +109,7 @@ const Contact = () => {
           ].map((contact, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
             >
@@ -121,10 +123,12 @@ const Contact = () => {
         </div>
       </motion.div>
       <motion.div
+        className="w-full"
         id="contact-form"
         data-animate="true"
         initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <h3 className="text-2xl font-bold mb-4">Send a Message</h3>
