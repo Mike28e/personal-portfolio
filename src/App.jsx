@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 
+import NavBar from './components/NavBar.jsx';
 import About from './components/About.jsx';
 import Experience from './components/Experience.jsx';
 import Projects from './components/Projects.jsx';
@@ -71,106 +72,12 @@ export default function PortfolioHomepage() {
   return (
     <div className="bg-gray-950 text-gray-100 min-h-screen">
       {/* Navbar with slide-down animation */}
-      <motion.nav
-        className="fixed top-0 w-full bg-gray-900/95 z-50 backdrop-blur-sm border-b border-gray-800"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="max-w-full w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <motion.span
-                className="text-xl font-bold text-white"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                Mike Elias
-              </motion.span>
-            </div>
-
-            {/* Desktop Navigation with staggered animation */}
-            <div className="hidden md:flex items-center space-x-4">
-              {['home', 'about', 'experience', 'projects', 'contact'].map(
-                (section, index) => (
-                  <motion.div
-                    key={section}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
-                  >
-                    <NavLink
-                      label={section.charAt(0).toUpperCase() + section.slice(1)}
-                      section={section}
-                      active={activeSection}
-                      onClick={scrollToSection}
-                    />
-                  </motion.div>
-                )
-              )}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <motion.div
-              className="md:hidden flex items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-300 hover:text-white"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Mobile menu with slide-down animation */}
-        {isMenuOpen && (
-          <motion.div
-            className="md:hidden bg-gray-900 border-b border-gray-800"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <MobileNavLink
-                label="Home"
-                section="home"
-                active={activeSection}
-                onClick={scrollToSection}
-              />
-              <MobileNavLink
-                label="About"
-                section="about"
-                active={activeSection}
-                onClick={scrollToSection}
-              />
-              <MobileNavLink
-                label="Experience"
-                section="experience"
-                active={activeSection}
-                onClick={scrollToSection}
-              />
-              <MobileNavLink
-                label="Projects"
-                section="projects"
-                active={activeSection}
-                onClick={scrollToSection}
-              />
-              <MobileNavLink
-                label="Contact"
-                section="contact"
-                active={activeSection}
-                onClick={scrollToSection}
-              />
-            </div>
-          </motion.div>
-        )}
-      </motion.nav>
+      <NavBar
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+      />
 
       <main className="pt-16">
         {/* Hero Section with staggered animations */}
