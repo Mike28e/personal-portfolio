@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 /* eslint-disable-next-line no-unused-vars */
-import { motion, useInView } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Briefcase, ChevronDown, ChevronUp } from 'lucide-react';
 
 // Imported experience data
 const experiences = [
@@ -109,7 +109,97 @@ const experiences = [
 
 export default function Experience() {
   const containerRef = useRef(null);
-  const inView = useInView(containerRef, { once: true, amount: 0.3 });
+  // const inView = useInView(containerRef, { once: true, amount: 0.3 });
+  const [startIndex, setStartIndex] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [direction, setDirection] = useState(null);
+
+  // Always display exactly 3 jobs
+  const visibleJobs = experiences.slice(startIndex, startIndex + 3);
+
+  // Add placeholder if we have fewer than 3 jobs to show
+  while (
+    visibleJobs.length < 3 &&
+    startIndex + visibleJobs.length < experiences.length
+  ) {
+    visibleJobs.push(experiences[startIndex + visibleJobs.length]);
+  }
+
+  const scrollToNext = () => {
+    if (startIndex + 3 < experiences.length && !isScrolling) {
+      setIsScrolling(true);
+      setDirection('down');
+
+      // Short delay to ensure animations complete properly
+      setTimeout(() => {
+        setStartIndex(startIndex + 1);
+
+        // Reset scrolling state after animation duration
+        setTimeout(() => {
+          setIsScrolling(false);
+          setDirection(null);
+        }, 100);
+      }, 50);
+    }
+  };
+
+  const scrollToPrev = () => {
+    if (startIndex > 0 && !isScrolling) {
+      setIsScrolling(true);
+      setDirection('up');
+
+      // Short delay to ensure animations complete properly
+      setTimeout(() => {
+        setStartIndex(startIndex - 1);
+
+        // Reset scrolling state after animation duration
+        setTimeout(() => {
+          setIsScrolling(false);
+          setDirection(null);
+        }, 100);
+      }, 50);
+    }
+  };
+
+  // Create a JobCard component for better readability
+  const JobCard = ({ job }) => {
+    return (
+      <div className="mb-12 pl-12 relative">
+        {/* Marker */}
+        <div className="absolute left-0 top-2 w-8 h-8 bg-gradient-to-tr from-sky-500 to-purple-500 rounded-full flex items-center justify-center">
+          <Briefcase size={20} className="text-white" />
+        </div>
+
+        <div className="bg-gray-800 bg-opacity-80 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
+          <div className="flex items-center mb-2">
+            <h3 className="text-xl font-semibold text-white mr-2">
+              {job.title}
+            </h3>
+            <span className="text-gray-400 text-sm">{job.period}</span>
+          </div>
+          <p className="text-gray-300 mb-2 leading-relaxed">
+            {job.description}
+          </p>
+          <div className="flex flex-wrap gap-2 mb-2">
+            {job.skills.map((skill, i2) => (
+              <span
+                key={i2}
+                className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+          <div className="flex items-center justify-between text-gray-400 text-sm">
+            <span>@ {job.company}</span>
+            <a href={job.websiteUrl} className="hover:text-white">
+              {job.website}
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section
@@ -141,48 +231,90 @@ export default function Experience() {
           {/* Vertical line */}
           <div className="absolute left-4 top-0 bottom-0 w-1 bg-sky-500/50 rounded-full"></div>
 
-          {experiences.map((item, idx) => (
-            <motion.div
-              key={item.id}
-              className="mb-12 pl-12 relative"
-              initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: idx * 0.3 }}
-            >
-              {/* Marker */}
-              <div className="absolute left-0 top-2 w-8 h-8 bg-gradient-to-tr from-sky-500 to-purple-500 rounded-full flex items-center justify-center">
-                <Briefcase size={20} className="text-white" />
-              </div>
+          {/* Timeline content with fixed height */}
+          <div className="relative h-full">
+            <div className="overflow-hidden" style={{ height: '650px' }}>
+              <AnimatePresence initial={false} mode="popLayout">
+                {visibleJobs.map((job, idx) => (
+                  <motion.div
+                    key={`${job.id}-${startIndex + idx}`}
+                    initial={{
+                      opacity: 0,
+                      y:
+                        direction === 'down'
+                          ? 100
+                          : direction === 'up'
+                            ? -100
+                            : 0,
+                    }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{
+                      opacity: 0,
+                      y:
+                        direction === 'down'
+                          ? -100
+                          : direction === 'up'
+                            ? 100
+                            : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <JobCard job={job} index={idx} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
 
-              <div className="bg-gray-800 bg-opacity-80 p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow">
-                <div className="flex items-center mb-2">
-                  <h3 className="text-xl font-semibold text-white mr-2">
-                    {item.title}
-                  </h3>
-                  <span className="text-gray-400 text-sm">{item.period}</span>
-                </div>
-                <p className="text-gray-300 mb-2 leading-relaxed">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {item.skills.map((skill, i2) => (
-                    <span
-                      key={i2}
-                      className="bg-gray-700 text-gray-300 px-2 py-1 rounded-full text-xs"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between text-gray-400 text-sm">
-                  <span>@ {item.company}</span>
-                  <a href={item.websiteUrl} className="hover:text-white">
-                    {item.website}
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {/* Navigation Arrows */}
+          <div className="flex justify-center  space-x-4">
+            <button
+              onClick={scrollToPrev}
+              disabled={startIndex === 0 || isScrolling}
+              className={`p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors ${
+                startIndex === 0
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'cursor-pointer'
+              }`}
+              aria-label="Previous experience"
+            >
+              <ChevronUp size={24} className="text-white" />
+            </button>
+
+            <button
+              onClick={scrollToNext}
+              disabled={startIndex + 3 >= experiences.length || isScrolling}
+              className={`p-3 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors ${
+                startIndex + 3 >= experiences.length
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'cursor-pointer'
+              }`}
+              aria-label="Next experience"
+            >
+              <ChevronDown size={24} className="text-white" />
+            </button>
+          </div>
+
+          {/* Progress indicator */}
+          <div className="flex justify-center mt-4">
+            <div className="flex space-x-2">
+              {experiences.map((_, index) => {
+                // Only show indicators for every possible position
+                if (index <= experiences.length - 3) {
+                  const isActive = index === startIndex;
+                  return (
+                    <div
+                      key={index}
+                      className={`w-2 h-2 rounded-full ${
+                        isActive ? 'bg-sky-500' : 'bg-gray-600'
+                      }`}
+                    />
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

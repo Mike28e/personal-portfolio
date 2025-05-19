@@ -136,7 +136,7 @@ export default function Home({ scrollToSection }) {
             initial={{ scale: 1 }}
             animate={{
               scale: [1, 1.1, 1],
-              opacity: [0.5, 0.7, 0.5],
+              opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
               duration: 3,
