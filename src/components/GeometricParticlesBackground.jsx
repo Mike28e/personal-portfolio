@@ -138,12 +138,12 @@ const GeometricParticlesBackground = () => {
     resizeCanvas();
     animate();
 
-    // Debug info to check if animation is running
-    console.log(
-      'Geometric particles animation initialized with',
-      particles.length,
-      'particles'
-    );
+    // // Debug info to check if animation is running
+    // console.log(
+    //   'Geometric particles animation initialized with',
+    //   particles.length,
+    //   'particles'
+    // );
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);

@@ -35,8 +35,8 @@ export default function Home({ scrollToSection }) {
           className="space-y-6 max-w-xl text-center md:text-left"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0 }}
         >
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
             Hi, I'm
@@ -85,8 +85,8 @@ export default function Home({ scrollToSection }) {
             className="flex flex-wrap gap-4 justify-center md:justify-start mt-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <button
               onClick={() => scrollToSection('projects')}
