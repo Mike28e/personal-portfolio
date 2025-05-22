@@ -12,14 +12,14 @@ export const socials = [
     url: 'https://www.linkedin.com/in/MikeElias1',
     Icon: Linkedin,
   },
-  {
-    name: 'Email',
-    url: 'mailto:hello@yourdomain.com',
-    Icon: Mail,
-  },
-  {
-    name: 'Twitter',
-    url: 'https://twitter.com/yourhandle',
-    Icon: Twitter,
-  },
+  // {
+  //   name: 'Email',
+  //   url: 'mailto:hello@yourdomain.com',
+  //   Icon: Mail,
+  // },
+  // {
+  //   name: 'Twitter',
+  //   url: 'https://twitter.com/yourhandle',
+  //   Icon: Twitter,
+  // },
 ];

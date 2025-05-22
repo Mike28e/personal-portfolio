@@ -10,7 +10,7 @@ const projects = [
     tags: ['Vue.js', 'Vuetify', 'Google Cloud'],
     image: '/assets/images/dycerentals.png',
     github: 'https://github.com/Mike28e/car-rental-site',
-    demo: 'https://dycerentals.example.com',
+    // demo: 'https://dycerentals.example.com',
   },
   // add more projects here
 ];

@@ -3,22 +3,7 @@ import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import { Code } from 'lucide-react';
 import aboutAnim from '../animations/brain.json';
-
-const skillGroups = [
-  {
-    title: 'Frontend',
-    skills: ['Vue', 'Vuetify', 'React', 'Next.js', 'TailwindCSS'],
-  },
-  {
-    title: 'Backend',
-    skills: ['Node.js', 'C#', '.NET Core', 'Kotlin', 'Apache Beam'],
-  },
-  {
-    title: 'DevOps',
-    skills: ['GCP', 'Terraform', 'Docker', 'AWS', 'CI/CD', 'Git'],
-  },
-  { title: 'Design', skills: ['UI/UX', 'Responsive Design'] },
-];
+import { skillGroups } from '../data/skills';
 
 export default function About() {
   return (
