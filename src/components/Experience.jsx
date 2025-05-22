@@ -59,7 +59,7 @@ export default function Experience() {
         </div>
         <div className="flex items-center justify-between text-gray-400 text-sm">
           <span>@ {job.company}</span>
-          <a href={job.websiteUrl} className="hover:text-white">
+          <a target="_blank" href={job.websiteUrl} className="hover:text-white">
             {job.website}
           </a>
         </div>

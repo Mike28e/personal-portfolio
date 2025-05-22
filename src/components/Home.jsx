@@ -112,6 +112,7 @@ export default function Home({ scrollToSection }) {
             {socials.map((social, i) => (
               <motion.a
                 key={i}
+                target="_blank"
                 href={social.url}
                 className="text-gray-400 hover:text-white transform hover:scale-125 transition"
                 transition={{ duration: 0.3 }}
