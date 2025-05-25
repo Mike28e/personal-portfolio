@@ -1,19 +1,7 @@
 /* eslint-disable-next-line no-unused-vars */
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'Luxury Car Rental Site',
-    description:
-      'A luxury car rental platform with booking options, site analytics, and chatbot integration.',
-    tags: ['Vue.js', 'Vuetify', 'Google Cloud'],
-    image: '/assets/images/dycerentals.png',
-    github: 'https://github.com/Mike28e/car-rental-site',
-    // demo: 'https://dycerentals.example.com',
-  },
-  // add more projects here
-];
+import { projects } from '../data/projects.jsx';
 
 export default function Projects() {
   return (
@@ -45,29 +33,29 @@ export default function Projects() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 items-stretch">
           {projects.map((project, idx) => (
             <motion.div
               key={project.title}
-              className="group"
+              className="group h-full"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
               whileHover={{ y: -10 }}
             >
-              <div className="bg-gray-800 bg-opacity-80 rounded-xl overflow-hidden shadow-lg transition-shadow hover:shadow-2xl">
+              <div className="bg-gray-800 bg-opacity-80 rounded-xl overflow-hidden shadow-lg transition-shadow hover:shadow-2xl h-full flex flex-col">
                 {/* Image with overlay */}
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-semibold text-white mb-2">
                     {project.title}
                   </h3>
@@ -84,16 +72,18 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  <div className="flex gap-4 mt-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
-                    >
-                      <Github size={16} className="mr-1" />
-                      Code
-                    </a>
+                  <div className="mt-auto flex gap-4">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sky-400 hover:text-sky-300 transition-colors"
+                      >
+                        <Github size={16} className="mr-1" />
+                        Code
+                      </a>
+                    )}
                     {project.demo && (
                       <a
                         href={project.demo}
